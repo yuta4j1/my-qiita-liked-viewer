@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        // "noImplicitAny": true,
+        "alwaysStrict": true,
+        "removeComments": true,
+        "jsx": "react",
+        "module": "es6",
+        "moduleResolution": "node",
+        "lib": ["es7", "dom"],
+        // "types": ["node"]
+    },
+    "include": ["src/renderer/**/*"],
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "my-qiita-liked-viewer",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "author": "yuta4j1",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "axios": "^0.18.0",
+    "electron": "^4.1.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^11.11.3",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "@types/styled-components": "^4.1.12",
+    "jest": "^24.5.0",
+    "prettier": "^1.16.4",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=production",
+    "serve": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=development"
+  }
+}
