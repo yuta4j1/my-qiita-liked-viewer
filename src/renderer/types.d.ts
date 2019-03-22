@@ -1,21 +1,22 @@
 export type ArticleInfo = {
-    uuid: string,
-    title: string,
-    url: string,
-    userImageUrl: string,
-    updateDate: string
-}
+  uuid: string;
+  title: string;
+  url: string;
+  userImageUrl: string;
+  updateDate: string;
+  tagList: string[];
+};
 
 export type Column = {
-    categoryName: string,
-    articles: ArticleInfo[]
-}
+  categoryName: string;
+  articles: ArticleInfo[];
+};
 
 export type SourceArticleInfo = {
-    uuid: string,
-    title: string,
-    url: string,
-    userImageUrl: string,
-    updateDate: string,
-    tagList: string[]
-}
+  uuid: string;
+  title: string;
+  url: string;
+  userImageUrl: string;
+  updateDate: string;
+  tagList: string[];
+};
