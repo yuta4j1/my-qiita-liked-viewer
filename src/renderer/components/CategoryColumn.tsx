@@ -7,16 +7,22 @@ type ColumnProps = Column & { columnNum: number };
 type ColumnState = Column & { columnNum: number };
 
 const ColumnHeader = styled.div`
-  position: fixed;
+  /** position: fixed; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
   font-size: 20px;
 `;
+const ColumnBody = styled.div`
+  min-width: 150px;
+  height: 100%;
+  overflow: auto;
+`;
 
-const PanelColumn = styled.div<ColumnProps>`
-  width: ${props => `${100 / props.columnNum}%`};
+const PanelColumn = styled.div`
+  min-width: 150px;
+  height: 900px;
 `;
 
 class CategoryColumn extends React.Component<ColumnProps, ColumnState> {
@@ -31,8 +37,9 @@ class CategoryColumn extends React.Component<ColumnProps, ColumnState> {
   }
   render() {
     return (
-      <PanelColumn {...this.props}>
+      <PanelColumn>
         <ColumnHeader>{this.state.categoryName}</ColumnHeader>
+        <ColumnBody>{this.createArticlePanel()}</ColumnBody>
       </PanelColumn>
     );
   }
