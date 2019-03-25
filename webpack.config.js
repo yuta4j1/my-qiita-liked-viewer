@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    target: 'electron-renderer',
     entry: './src/renderer/index.tsx',
     module: {
         rules: [
