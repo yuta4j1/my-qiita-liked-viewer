@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { openExternalBrowser } from '../service';
 import styled from '../theme/index';
 import { ArticleInfo } from '../types';
 
@@ -32,23 +33,41 @@ const Item = styled.div`
 
 const TagList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
 `;
 
 const ATag = styled.li`
-  margin: 0px 5px;
+  margin: 2px 2px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1em;
+`;
+
+const Link = styled.a`
+  font-family: 'Noto Sans JP', sans-serif;
+  text-decoration: none;
 `;
 
 class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
   constructor(props: ArticleProps) {
     super(props);
     this.state = { ...props };
+    // https://reactjs.org/docs/handling-events.html
+    this.openArticle = this.openArticle.bind(this);
   }
 
   createTagBadges() {
-    return this.state.tagList.map((tagKey, tag) => {
+    return this.state.tagList.map((tag, tagKey) => {
       return <ATag key={tagKey}>{tag}</ATag>;
     });
+  }
+
+  openArticle(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault();
+    openExternalBrowser('https://qiita.com/' + this.state.url);
   }
 
   render() {
@@ -59,13 +78,15 @@ class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
         </Item>
         <Item>
           <UploadDate>
-            <p>投稿日付：2019/12/31</p>/** TODO this.state.UploadDate */
+            <p>投稿日付：2019/12/31</p>
           </UploadDate>
           <div>
-            <a href="#">{this.state.title}</a>
+            <Link href="#" onClick={this.openArticle}>
+              {this.state.title}
+            </Link>
           </div>
           <div>
-            <TagList>{this.createTagBadges()}</TagList>
+            <TagList>{this.createTagBadges}</TagList>
           </div>
         </Item>
       </Panel>
