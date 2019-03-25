@@ -2,6 +2,11 @@ import * as React from 'react';
 import { SourceArticleInfo, Column } from '../types';
 import { get } from '../api-facade';
 import CategoryColumn from './CategoryColumn';
+import styled from '../theme/index';
+
+const ColumnsView = styled.div`
+  display: flex;
+`;
 
 type State = {
   srcArticles: SourceArticleInfo[];
@@ -15,15 +20,23 @@ class MainView extends React.Component<{}, State> {
   };
 
   async componentDidMount() {
-    // エンドポイントにアクセスし、記事情報を取得する
-    const sourceArticleInfos = await get('/list');
-    if (sourceArticleInfos) {
-      this.setState({
-        srcArticles: [...sourceArticleInfos.data],
-        columnNum: 0
-      });
-    } else {
-      this.setState({ srcArticles: [], columnNum: 0 });
+    try {
+      // エンドポイントにアクセスし、記事情報を取得する
+      const sourceArticleInfos = await get('/list');
+      console.log(
+        '[MainView] componentDidMount sourceArticleInfos',
+        sourceArticleInfos
+      );
+      if (sourceArticleInfos) {
+        this.setState({
+          srcArticles: [...sourceArticleInfos],
+          columnNum: 0
+        });
+      } else {
+        this.setState({ srcArticles: [], columnNum: 0 });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -67,6 +80,7 @@ class MainView extends React.Component<{}, State> {
         </div>
       );
     }
+    console.log('[MainView] renderCategoryColumn -> props', props);
     return props.map((prop, key) => {
       const categoryColumnProp = Object.assign(prop, { columnNum: columnNum });
       return <CategoryColumn key={key} {...categoryColumnProp} />;
@@ -74,9 +88,7 @@ class MainView extends React.Component<{}, State> {
   }
 
   render() {
-    return (
-      <div>{this.renderCategoryColumn()}</div>
-    );
+    return <ColumnsView>{this.renderCategoryColumn()}</ColumnsView>;
   }
 }
 
