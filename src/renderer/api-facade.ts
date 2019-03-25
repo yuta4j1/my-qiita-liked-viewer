@@ -1,10 +1,10 @@
 import axiosBase, { AxiosPromise } from 'axios';
-import { resolve } from 'path';
+import { SourceArticleInfo } from './types';
 
 const requestTo = 'http://localhost:8080/mql';
 
 const defaultConfig = {
-  timeout: 20000,
+  timeout: 100000,
   headers: {
     'Content-Type': 'application/json'
   },
@@ -16,14 +16,15 @@ const axios = axiosBase.create({
   ...defaultConfig
 });
 
-export function get(url: string): AxiosPromise<any> | void {
-  axios
-    .get(url)
-    .then(response => {
-      console.log(response);
-      resolve(JSON.stringify(response));
-    })
-    .then(error => {
-      console.log(error);
-    });
+export function get(url: string): Promise<SourceArticleInfo[]> | void {
+  return new Promise<SourceArticleInfo[]>((resolve, reject) => {
+    axios
+      .get(url)
+      .then(response => {
+        resolve(response.data);
+      })
+      .then(error => {
+        console.log(error);
+      });
+  });
 }
