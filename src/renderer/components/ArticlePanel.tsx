@@ -18,26 +18,18 @@ const UploadDate = styled.div`
   font-size: 10.9px;
 `;
 
-const UserIcon = styled.div`
-  padding: 20px;
-  align-items: center;
-  border-style: solid;
-  border-width: 0.5px;
-  border-radius: 50%;
-  border-color: #bdbdbd;
-`;
-
 const Item = styled.div`
   margin: 10px;
 `;
 
-const TagList = styled.ul`
+const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  letft: 20%;
 `;
 
-const ATag = styled.li`
+const ATag = styled.div`
   margin: 2px 2px;
   padding: 5px;
   border-radius: 10px;
@@ -49,9 +41,10 @@ const ATag = styled.li`
 const Link = styled.a`
   font-family: 'Noto Sans JP', sans-serif;
   text-decoration: none;
+  color: #337ab7;
 `;
 
-class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
+export default class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
   constructor(props: ArticleProps) {
     super(props);
     this.state = { ...props };
@@ -74,7 +67,10 @@ class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
     return (
       <Panel>
         <Item>
-          <UserIcon>User</UserIcon>
+          {/* <UserIconStyle>User</UserIconStyle> */}
+          <div>
+            <img src={this.state.userImageUrl} width={100} height={100} />
+          </div>
         </Item>
         <Item>
           <UploadDate>
@@ -86,12 +82,10 @@ class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
             </Link>
           </div>
           <div>
-            <TagList>{this.createTagBadges}</TagList>
+            <TagList>{this.createTagBadges()}</TagList>
           </div>
         </Item>
       </Panel>
     );
   }
 }
-
-export default ArticlePanel;

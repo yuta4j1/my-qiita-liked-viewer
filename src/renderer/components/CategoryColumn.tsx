@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Column, ArticleInfo } from '../types';
 import ArticlePanel from './ArticlePanel';
+import { Scrollbars } from 'react-custom-scrollbars';
 import styled from '../theme/index';
 
 type ColumnProps = Column & { columnNum: number };
@@ -16,8 +17,7 @@ const ColumnHeader = styled.div`
 `;
 const ColumnBody = styled.div`
   min-width: 150px;
-  height: 100%;
-  overflow: auto;
+  height: 1000px;
 `;
 
 const PanelColumn = styled.div`
@@ -39,7 +39,9 @@ class CategoryColumn extends React.Component<ColumnProps, ColumnState> {
     return (
       <PanelColumn>
         <ColumnHeader>{this.state.categoryName}</ColumnHeader>
-        <ColumnBody>{this.createArticlePanel()}</ColumnBody>
+        <Scrollbars style={{ width: 500, height: 900 }}>
+          <ColumnBody>{this.createArticlePanel()}</ColumnBody>
+        </Scrollbars>
       </PanelColumn>
     );
   }
