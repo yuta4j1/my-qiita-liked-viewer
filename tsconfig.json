@@ -8,6 +8,10 @@
         "moduleResolution": "node",
         "lib": ["es7", "dom"],
         // "types": ["node"]
+        "baseUrl": "./",
+        "paths": {
+            "@": ["src/renderer"]
+        }
     },
     "include": ["src/renderer/**/*"],
     "exclude": ["node_modules"]
