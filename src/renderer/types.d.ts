@@ -20,3 +20,9 @@ export type SourceArticleInfo = {
   updateDate: string;
   tagList: string[];
 };
+
+export type ModalState = {
+  isOpen: boolean;
+  modalBody: JSX.Element;
+  atCloseModal: () => void;
+};
