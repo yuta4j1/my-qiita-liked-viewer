@@ -44,7 +44,10 @@ const Link = styled.a`
   color: #337ab7;
 `;
 
-export default class ArticlePanel extends React.Component<ArticleProps, ArticleState> {
+export default class ArticlePanel extends React.Component<
+  ArticleProps,
+  ArticleState
+> {
   constructor(props: ArticleProps) {
     super(props);
     this.state = { ...props };
@@ -74,7 +77,7 @@ export default class ArticlePanel extends React.Component<ArticleProps, ArticleS
         </Item>
         <Item>
           <UploadDate>
-            <p>投稿日付：2019/12/31</p>
+            <p>投稿日付：{this.state.updateDate}</p>
           </UploadDate>
           <div>
             <Link href="#" onClick={this.openArticle}>
