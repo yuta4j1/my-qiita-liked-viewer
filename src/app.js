@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+const loadDevtool = require('electron-load-devtool');
 
 const createWindow = () => {
   let win = new BrowserWindow({
@@ -7,6 +8,8 @@ const createWindow = () => {
   });
 
   win.loadFile('index.html');
+  loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS);
+  loadDevtool(loadDevtool.REDUX_DEVTOOLS);
 
   win.webContents.openDevTools();
 
