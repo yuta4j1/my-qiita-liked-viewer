@@ -1,22 +1,11 @@
 import * as React from 'react';
 import Modal from 'react-modal';
-
-type ModalProps = {
-  isOpen: boolean;
-  contentElement: JSX.Element;
-  data?: any;
-};
-
-type ModalState = {
-  isOpen: boolean;
-  contentElement: JSX.Element;
-  data?: any;
-};
+import { ModalState } from '../types';
 
 const customStyles = {
   content: {
-    top: '90%',
-    left: '90%',
+    top: '50%',
+    left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
@@ -24,35 +13,22 @@ const customStyles = {
   }
 };
 
-class ModalFrame extends React.Component<ModalProps, ModalState> {
-  constructor(props: ModalProps) {
-    super(props);
-    this.state = { ...props };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
+type ModalFrameProps = {
+  currentState: ModalState;
+};
 
-  handleOpenModal() {
-    this.setState(Object.assign(this.state, { isOpen: true }));
-  }
-
-  handleCloseModal() {
-    this.setState(Object.assign(this.state, { isOpen: false }));
-  }
-
-  render() {
-    return (
-      <Modal
-        isOpen={this.state.isOpen}
-        onRequestClose={this.handleCloseModal}
-        shouldCloseOnOverlayClick={true}
-        style={customStyles}
-      >
-        {this.props.contentElement}
-      </Modal>
-    );
-  }
-}
+const ModalFrame: React.SFC<ModalFrameProps> = props => {
+  return (
+    <Modal
+      isOpen={props.currentState.isOpen}
+      onRequestClose={props.currentState.atClose}
+      shouldCloseOnOverlayClick={true}
+      style={customStyles}
+    >
+      {props.currentState.modalBody}
+    </Modal>
+  );
+};
 
 Modal.setAppElement('#app');
 
