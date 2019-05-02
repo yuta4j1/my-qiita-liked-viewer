@@ -24,5 +24,5 @@ export type SourceArticleInfo = {
 export type ModalState = {
   isOpen: boolean;
   modalBody: JSX.Element;
-  atCloseModal: () => void;
+  atClose: () => void;
 };
