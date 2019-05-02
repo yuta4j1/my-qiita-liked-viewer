@@ -1,1 +1,1 @@
-export const TOGGLE_MODAL = 'OPEN_MODAL';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
