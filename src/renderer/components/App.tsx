@@ -1,9 +1,12 @@
 import * as React from 'react';
-import NavBar from './Navbar';
+import NavBar from '../containers/NavBar';
 import styled from '../theme/index';
 import MainView from './MainView';
-import ModalFrame from './ModalFrame';
+import ModalContainer from '../containers/Modal';
 import SortTagForm from './SortTagForm';
+import { ModalState } from '../types';
+import { store } from '../containers/store';
+import { Provider } from 'react-redux';
 
 const Content = styled.div`
   display: flex;
@@ -12,41 +15,22 @@ const Item = styled.div`
   margin: 0px 5px;
 `;
 
-type AppState = {
-  modalIsOpen: boolean;
-  modalContent: JSX.Element;
-};
+export default function App() {
+  const initialModalState: ModalState = {
+    isOpen: false,
+    modalBody: <h4>Modal Body is Empty.</h4>,
+    atClose: () => console.log('modal closed')
+  };
 
-export default class App extends React.Component<{}, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalIsOpen: false,
-      modalContent: <div id="empty" />
-    };
-  }
-  modal = React.createRef<ModalFrame>();
-  showModal() {
-    this.setState(
-      Object.assign(this.state, {
-        modalContent: <SortTagForm tagList={['a', 'aa']} />
-      })
-    );
-    this.modal.current.handleOpenModal();
-  }
-  render() {
-    let modalProps = {
-      isOpen: false,
-      contentElement: this.state.modalContent
-    };
-    return (
+  return (
+    <Provider store={store}>
       <Content>
-        <NavBar callbackShowModal={this.showModal.bind(this)} />
+        <NavBar />
         <Item>
           <MainView />
         </Item>
-        <ModalFrame ref={this.modal} {...modalProps} />
+        <ModalContainer />
       </Content>
-    );
-  }
+    </Provider>
+  );
 }
