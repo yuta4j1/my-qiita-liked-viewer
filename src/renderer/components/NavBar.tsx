@@ -2,6 +2,8 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import styled from '../theme/index';
+import { ModalState } from '../types';
+import SortTagForm from './SortTagForm';
 
 const NavBarWrapper = styled.div`
   background-color: #59bb0c;
@@ -22,29 +24,30 @@ const Li = styled.div`
 `;
 
 type NavbarProps = {
-  callbackShowModal: () => void;
+  openModal?: (data: ModalState) => void;
 };
 
-export default class NavBar extends React.Component<NavbarProps, {}> {
-  constructor(props: NavbarProps) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <NavBarWrapper>
-        <Ul>
-          <Li>
-            <FontAwesomeIcon icon={faHome} size={'2x'} />
-          </Li>
-          <Li>
-            <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
-          </Li>
-          <Li onClick={() => this.props.callbackShowModal()}>
-            <FontAwesomeIcon icon={faPlus} size={'2x'} />
-          </Li>
-        </Ul>
-      </NavBarWrapper>
-    );
-  }
-}
+const NavBar: React.SFC<NavbarProps> = props => {
+  const modalState: ModalState = {
+    isOpen: true,
+    modalBody: <SortTagForm />,
+    atClose: () => console.log('modal closed...')
+  };
+  return (
+    <NavBarWrapper>
+      <Ul>
+        <Li>
+          <FontAwesomeIcon icon={faHome} size={'2x'} />
+        </Li>
+        <Li>
+          <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
+        </Li>
+        <Li onClick={e => props.openModal(modalState)}>
+          <FontAwesomeIcon icon={faPlus} size={'2x'} />
+        </Li>
+      </Ul>
+    </NavBarWrapper>
+  );
+};
+
+export default NavBar;
