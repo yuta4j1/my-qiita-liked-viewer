@@ -4,10 +4,9 @@
         "alwaysStrict": true,
         "removeComments": true,
         "jsx": "react",
-        "module": "es6",
+        "module": "esNext",
         "moduleResolution": "node",
         "lib": ["es7", "dom"],
-        // "types": ["node"]
         "baseUrl": "./",
         "paths": {
             "@": ["src/renderer"]
