@@ -17,7 +17,7 @@ type ModalFrameProps = {
   currentState: ModalState;
 };
 
-const ModalFrame: React.SFC<ModalFrameProps> = props => {
+const ModalFrame: React.FC<ModalFrameProps> = props => {
   return (
     <Modal
       isOpen={props.currentState.isOpen}
