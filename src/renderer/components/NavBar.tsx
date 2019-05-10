@@ -27,7 +27,7 @@ type NavbarProps = {
   openModal?: (data: ModalState) => void;
 };
 
-const NavBar: React.SFC<NavbarProps> = props => {
+const NavBar: React.FC<NavbarProps> = props => {
   const modalState: ModalState = {
     isOpen: true,
     modalBody: <SortTagForm />,
