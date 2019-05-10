@@ -1,8 +1,11 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     target: 'electron-renderer',
-    entry: './src/renderer/index.tsx',
+    entry: {
+        index: './src/renderer/index.tsx',
+    },
     module: {
         rules: [
             {
@@ -13,15 +16,19 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.ts', '.tsx']
+        extensions: ['.js', '.ts', '.tsx'],
+        alias: {
+            '~': path.resolve(__dirname, 'src/renderer'),
+            'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components')
+        }
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
-    // resolve: {
-    //     alias: {
-    //         '@': path.resolve(__dirname, 'src/renderer/')
-    //     }
-    // }
+    plugins: [new HtmlWebpackPlugin({
+        filename: '../index.html',
+        template: 'public/template.html',
+        chunksSortMode: 'dependency'
+    })]
 }
