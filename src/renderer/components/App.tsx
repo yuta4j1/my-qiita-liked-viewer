@@ -1,11 +1,9 @@
 import * as React from 'react';
-import NavBar from '../containers/NavBar';
-import styled from '../theme/index';
-import MainView from './MainView';
-import ModalContainer from '../containers/Modal';
-import SortTagForm from './SortTagForm';
+import NavBar from '~/containers/NavBar';
+import styled from '~/theme/index';
+import ModalContainer from '~/containers/Modal';
 import { ModalState } from '../types';
-import { store } from '../containers/store';
+import { store } from '~/containers/store';
 import { Provider } from 'react-redux';
 
 const Content = styled.div`
@@ -14,6 +12,8 @@ const Content = styled.div`
 const Item = styled.div`
   margin: 0px 5px;
 `;
+
+const LazyMainView = React.lazy(() => import('./LazyMainView'));
 
 export default function App() {
   const initialModalState: ModalState = {
@@ -27,7 +27,9 @@ export default function App() {
       <Content>
         <NavBar />
         <Item>
-          <MainView />
+          <React.Suspense fallback={<div>Now Loading...</div>}>
+            <LazyMainView />
+          </React.Suspense>
         </Item>
         <ModalContainer />
       </Content>
