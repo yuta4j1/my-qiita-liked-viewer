@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Column, ArticleInfo } from '../types';
 import ArticlePanel from './ArticlePanel';
 import { Scrollbars } from 'react-custom-scrollbars';
-import styled from '../theme/index';
+import styled from '~/theme/index';
 
 type ColumnProps = Column & { columnNum: number };
 type ColumnState = Column & { columnNum: number };

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { openExternalBrowser } from '../service';
-import styled from '../theme/index';
+import { openExternalBrowser } from '~/service';
+import styled from '~/theme/index';
 import { ArticleInfo } from '../types';
 
 type ArticleProps = ArticleInfo;
