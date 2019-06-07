@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { SourceArticleInfo, Column } from '../types';
-import { get } from '../api-facade';
+import { SourceArticleInfo, Column, LoadingState } from '../types';
+import { fetchArticleList } from '../api-facade';
 import CategoryColumn from './CategoryColumn';
 import styled from '../theme/index';
 
@@ -8,21 +8,28 @@ const ColumnsView = styled.div`
   display: flex;
 `;
 
+type Props = {
+  dispatchLoadingState?: (LoadingState) => void;
+};
+
 type State = {
   srcArticles: SourceArticleInfo[];
   columnNum: number;
 };
 
-class MainView extends React.Component<{}, State> {
-  state: State = {
-    srcArticles: [],
-    columnNum: 0
-  };
+class MainView extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      srcArticles: [],
+      columnNum: 0
+    };
+  }
 
   async componentDidMount() {
     try {
-      // エンドポイントにアクセスし、記事情報を取得する
-      const sourceArticleInfos = await get('/list');
+      // access API, and fetch Qiita article's info
+      const sourceArticleInfos = await fetchArticleList('/list');
       console.log(
         '[MainView] componentDidMount sourceArticleInfos',
         sourceArticleInfos
@@ -35,6 +42,8 @@ class MainView extends React.Component<{}, State> {
       } else {
         this.setState({ srcArticles: [], columnNum: 0 });
       }
+      // hide the loading component
+      this.props.dispatchLoadingState({ isActive: false });
     } catch (error) {
       console.log(error);
     }
