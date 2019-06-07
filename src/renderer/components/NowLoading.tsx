@@ -1,23 +1,23 @@
 import * as React from 'react';
 import LoadingOverlay from 'react-loading-overlay';
 import Spinner from './Spinner';
+import { LoadingState } from '../types';
 
-type LoaderState = { isActive: boolean };
+type LoadingProps = {
+  currentState: LoadingState;
+  children: JSX.Element;
+};
 
-class NowLoading extends React.Component<{}, LoaderState> {
-  state = { isActive: true };
-
-  componentDidMount() {
-    console.log('[NowLoading] componentDidMount is');
-  }
-
-  render() {
-    return (
-      <div>
-        <LoadingOverlay active={this.state.isActive} spinner={<Spinner />} />
-      </div>
-    );
-  }
-}
+const NowLoading: React.FC<LoadingProps> = (props: LoadingProps) => {
+  return (
+    <LoadingOverlay
+      active={props.currentState.isActive}
+      spinner
+      text="Loading content..."
+    >
+      {props.children}
+    </LoadingOverlay>
+  );
+};
 
 export default NowLoading;
