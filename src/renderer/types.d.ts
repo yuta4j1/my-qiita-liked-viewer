@@ -23,6 +23,16 @@ export type SourceArticleInfo = {
 
 export type ModalState = {
   isOpen: boolean;
+  headerTitle?: string;
   modalBody: JSX.Element;
-  atClose: () => void;
+  atClose: (any) => void;
+};
+
+export type LoadingState = {
+  isActive: boolean;
+};
+
+export type ReduxAction<T> = {
+  type: string;
+  payload: T;
 };
