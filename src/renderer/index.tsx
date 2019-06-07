@@ -1,5 +1,4 @@
-import * as React from 'react';
 import { render } from 'react-dom';
-import App from './components/App';
+import routing from './Routing';
 
-render(<App />, document.getElementById('app'));
+render(routing, document.getElementById('app'));
