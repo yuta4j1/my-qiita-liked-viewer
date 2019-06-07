@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        // "noImplicitAny": true,
+        // some dependency have implicit 'any' type
+        "noImplicitAny": false,
         "alwaysStrict": true,
         "removeComments": true,
         "jsx": "react",
@@ -8,9 +9,6 @@
         "moduleResolution": "node",
         "lib": ["es7", "dom"],
         "baseUrl": "./",
-        "paths": {
-            "@": ["src/renderer"]
-        }
     },
     "include": ["src/renderer/**/*"],
     "exclude": ["node_modules"]
