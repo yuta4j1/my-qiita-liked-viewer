@@ -24,14 +24,19 @@ const Li = styled.div`
 `;
 
 type NavbarProps = {
-  openModal?: (data: ModalState) => void;
+  toggleModal?: (data: ModalState) => void;
 };
 
 const NavBar: React.FC<NavbarProps> = props => {
   const modalState: ModalState = {
     isOpen: true,
     modalBody: <SortTagForm />,
-    atClose: () => console.log('modal closed...')
+    atClose: e =>
+      props.toggleModal({
+        isOpen: false,
+        modalBody: <div />,
+        atClose: () => console.log('')
+      })
   };
   return (
     <NavBarWrapper>
@@ -42,7 +47,7 @@ const NavBar: React.FC<NavbarProps> = props => {
         <Li>
           <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
         </Li>
-        <Li onClick={e => props.openModal(modalState)}>
+        <Li onClick={e => props.toggleModal(modalState)}>
           <FontAwesomeIcon icon={faPlus} size={'2x'} />
         </Li>
       </Ul>
