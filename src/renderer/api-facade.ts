@@ -1,4 +1,4 @@
-import axiosBase, { AxiosPromise } from 'axios';
+import axiosBase from 'axios';
 import { SourceArticleInfo } from './types';
 
 const requestTo = 'http://localhost:8080/mql';
@@ -11,20 +11,39 @@ const defaultConfig = {
   responseType: 'json'
 };
 
-const axios = axiosBase.create({
-  baseURL: requestTo,
-  ...defaultConfig
-});
+const requestFactory = (baseURL: string) =>
+  axiosBase.create({
+    baseURL,
+    ...defaultConfig
+  });
 
-export function get(url: string): Promise<SourceArticleInfo[]> | void {
+export function fetchArticleList(
+  url: string
+): Promise<SourceArticleInfo[]> | undefined {
   return new Promise<SourceArticleInfo[]>((resolve, reject) => {
-    axios
+    requestFactory(requestTo)
       .get(url)
       .then(response => {
         resolve(response.data);
       })
       .then(error => {
         console.log(error);
+        reject(error);
+      });
+  });
+}
+
+const qiitaApiUrl = 'https://qiita.com/api/v2';
+
+export function fetchUser(uid: string): Promise<any> | undefined {
+  return new Promise<any>(resolve => {
+    requestFactory(qiitaApiUrl)
+      .get(`users/${uid}`)
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(error => {
+        throw error;
       });
   });
 }
