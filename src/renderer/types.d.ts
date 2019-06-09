@@ -32,6 +32,18 @@ export type LoadingState = {
   isActive: boolean;
 };
 
+export type ColumnCardState = {
+  id: string;
+  text: string;
+  order: number;
+};
+
+export type User = {
+  id: string;
+  name: string;
+  profileImageUrl: string;
+};
+
 export type ReduxAction<T> = {
   type: string;
   payload: T;
