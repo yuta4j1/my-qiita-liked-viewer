@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import styled from '../theme/index';
 import { ModalState } from '../types';
-import SortTagForm from './SortTagForm';
+import ColumnControl from './ColumnControl/index';
 
 const NavBarWrapper = styled.div`
-  background-color: #59bb0c;
+  background-color: #55c500;
 `;
 const Ul = styled.div`
   display: flex;
@@ -30,7 +30,11 @@ type NavbarProps = {
 const NavBar: React.FC<NavbarProps> = props => {
   const modalState: ModalState = {
     isOpen: true,
-    modalBody: <SortTagForm />,
+    modalBody: (
+      <ColumnControl
+        columnNames={['Java', 'JavaScript', 'Scala', 'Git', 'Other']}
+      />
+    ),
     atClose: e =>
       props.toggleModal({
         isOpen: false,
