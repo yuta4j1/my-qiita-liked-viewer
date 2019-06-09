@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from '~/theme';
-import InputUid from './InputUid';
+import InputUidText from './InputUidText';
+import SubmitButton from './SubmitButton';
 import { fetchUser } from '~/api-facade';
 import { User } from '../../types';
 
@@ -12,7 +13,31 @@ const Content = styled.div`
   background-color: #55c500;
 `;
 
-const LoginButton = styled.button``;
+const Prompt = styled.div`
+  padding-top: 20%;
+  display: flex;
+  justify-content: center;
+`;
+
+const Message = styled.div`
+  color: #fafafa;
+  font-family: 'Assistant', sans-serif;
+  font-size: 2em;
+`;
+
+const InputText = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  margin: 14px;
+`;
+
+const LoginButton = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  margin: 14px;
+`;
 
 interface Props extends RouteComponentProps<{}> {}
 
@@ -66,9 +91,15 @@ const Login: React.FC<Props> = props => {
 
   return (
     <Content>
-      <p>Please input User ID</p>
-      <InputUid text={inputUid} changeEvent={changeUidText} />
-      <LoginButton onClick={e => handleLoginButtonClicked()}>ok</LoginButton>
+      <Prompt>
+        <Message>Please input your Qiita account UserID</Message>
+      </Prompt>
+      <InputText>
+        <InputUidText text={inputUid} changeEvent={changeUidText} />
+      </InputText>
+      <LoginButton>
+        <SubmitButton clickEvent={handleLoginButtonClicked} />
+      </LoginButton>
     </Content>
   );
 };
