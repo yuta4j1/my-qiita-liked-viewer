@@ -39,13 +39,16 @@ const LoginButton = styled.div`
   margin: 14px;
 `;
 
-interface Props extends RouteComponentProps<{}> {}
+type DispatchUser = (props: User) => void;
+interface LoginProps extends RouteComponentProps<{}> {
+  storeUserInfo(a: User): void;
+}
 
 interface State {
   inputUid: string;
 }
 
-const Login: React.FC<Props> = props => {
+const Login: React.FC<LoginProps> = (props: LoginProps) => {
   const [inputUid, setInputUid] = useState('');
 
   const changeUidText = (uid: string) => {
@@ -85,8 +88,10 @@ const Login: React.FC<Props> = props => {
         console.log('error!');
       }
       console.log('[Login] UserInfo: ', { result });
+      // store fetched User
+      props.storeUserInfo(result);
+      props.history.push('/view');
     });
-    props.history.push('/view');
   };
 
   return (
