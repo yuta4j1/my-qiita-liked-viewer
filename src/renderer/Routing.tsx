@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  BrowserRouter as Router,
+  withRouter
+} from 'react-router-dom';
 import App from '~/components/App';
-import Login from '~/components/Login';
+import LoginWrapper from '~/components/Login/LoginWrapper';
 
 const Routing = (
   <Router>
     <Switch>
       <Route path="/view" component={App} />
-      <Route path="/" component={Login} />
+      <Route path="/" component={withRouter(LoginWrapper)} />
     </Switch>
   </Router>
 );
