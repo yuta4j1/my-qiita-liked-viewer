@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { toggleLoading } from '../Loading/action';
 import { LoadingState } from '../../types';
 import MainView from '../../components/MainView';
+import { AppState } from '../store';
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    userInfo: state.loginActionReducer
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: LoadingState) => {
   return {
@@ -12,6 +19,6 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: LoadingState) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MainView);
