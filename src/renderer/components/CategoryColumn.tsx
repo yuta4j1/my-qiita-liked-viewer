@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Column, ArticleInfo } from '../types';
 import ArticlePanel from './ArticlePanel';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -25,26 +26,22 @@ const PanelColumn = styled.div`
   height: 900px;
 `;
 
-class CategoryColumn extends React.Component<ColumnProps, ColumnState> {
-  constructor(props: ColumnProps) {
-    super(props);
-    this.state = { ...props };
-  }
-  createArticlePanel() {
-    return this.state.articles.map((article, key) => {
+const CategoryColumn: React.FC<ColumnProps> = props => {
+  const [state, setState] = useState({ ...props });
+
+  const createArticlePanel = () =>
+    state.articles.map((article, key) => {
       return <ArticlePanel key={key} {...article} />;
     });
-  }
-  render() {
-    return (
-      <PanelColumn>
-        <ColumnHeader>{this.state.categoryName}</ColumnHeader>
-        <Scrollbars style={{ width: 500, height: 900 }}>
-          <ColumnBody>{this.createArticlePanel()}</ColumnBody>
-        </Scrollbars>
-      </PanelColumn>
-    );
-  }
-}
+
+  return (
+    <PanelColumn>
+      <ColumnHeader>{state.categoryName}</ColumnHeader>
+      <Scrollbars style={{ width: 500, height: 900 }}>
+        <ColumnBody>{createArticlePanel()}</ColumnBody>
+      </Scrollbars>
+    </PanelColumn>
+  );
+};
 
 export default CategoryColumn;

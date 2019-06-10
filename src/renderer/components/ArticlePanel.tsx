@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { openExternalBrowser } from '~/service';
 import styled from '~/theme/index';
 import { ArticleInfo } from '../types';
@@ -44,51 +45,41 @@ const Link = styled.a`
   color: #337ab7;
 `;
 
-export default class ArticlePanel extends React.Component<
-  ArticleProps,
-  ArticleState
-> {
-  constructor(props: ArticleProps) {
-    super(props);
-    this.state = { ...props };
-    // https://reactjs.org/docs/handling-events.html
-    this.openArticle = this.openArticle.bind(this);
-  }
+const ArticlePanel: React.FC<ArticleProps> = props => {
+  const [state, setState] = useState({ ...props });
 
-  createTagBadges() {
-    return this.state.tagList.map((tag, tagKey) => {
-      return <ATag key={tagKey}>{tag}</ATag>;
+  const createTagBadges = () =>
+    state.tagList.map((tag, key) => {
+      return <ATag key={key}>{tag}</ATag>;
     });
-  }
 
-  openArticle(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  const openArticle = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    openExternalBrowser('https://qiita.com/' + this.state.url);
-  }
+    openExternalBrowser('https://qiita.com/' + state.url);
+  };
 
-  render() {
-    return (
-      <Panel>
-        <Item>
-          {/* <UserIconStyle>User</UserIconStyle> */}
-          <div>
-            <img src={this.state.userImageUrl} width={100} height={100} />
-          </div>
-        </Item>
-        <Item>
-          <UploadDate>
-            <p>投稿日付：{this.state.updateDate}</p>
-          </UploadDate>
-          <div>
-            <Link href="#" onClick={this.openArticle}>
-              {this.state.title}
-            </Link>
-          </div>
-          <div>
-            <TagList>{this.createTagBadges()}</TagList>
-          </div>
-        </Item>
-      </Panel>
-    );
-  }
-}
+  return (
+    <Panel>
+      <Item>
+        <div>
+          <img src={state.userImageUrl} width={100} height={100} />
+        </div>
+      </Item>
+      <Item>
+        <UploadDate>
+          <p>投稿日付：{state.updateDate}</p>
+        </UploadDate>
+        <div>
+          <Link href="#" onClick={e => openArticle(e)}>
+            {state.title}
+          </Link>
+        </div>
+        <div>
+          <TagList>{createTagBadges()}</TagList>
+        </div>
+      </Item>
+    </Panel>
+  );
+};
+
+export default ArticlePanel;
