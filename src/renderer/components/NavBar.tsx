@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import styled from '../theme/index';
-import { ModalState } from '../types';
+import { ModalState, User } from '../types';
 import ColumnControl from './ColumnControl/index';
 
 const NavBarWrapper = styled.div`
@@ -24,6 +24,7 @@ const Li = styled.div`
 `;
 
 type NavbarProps = {
+  signinUser: User;
   toggleModal?: (data: ModalState) => void;
 };
 
@@ -46,7 +47,7 @@ const NavBar: React.FC<NavbarProps> = props => {
     <NavBarWrapper>
       <Ul>
         <Li>
-          <FontAwesomeIcon icon={faHome} size={'2x'} />
+          <img src={props.signinUser.profileImageUrl} />
         </Li>
         <Li>
           <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
