@@ -10,7 +10,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts[x]?$/,
-                use: 'ts-loader',
+                use: ['ts-loader', 'eslint-loader'],
                 exclude: /node_modules/
             }
         ]
@@ -18,7 +18,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts', '.tsx'],
         alias: {
-            '~': path.resolve(__dirname, 'src/renderer'),
+            '@': path.resolve(__dirname, 'src/renderer'),
             'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components')
         }
     },
@@ -27,7 +27,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [new HtmlWebpackPlugin({
-        filename: '../index.html',
+        filename: 'index.html',
         template: 'public/template.html',
         chunksSortMode: 'dependency'
     })]
