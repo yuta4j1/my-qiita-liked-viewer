@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SourceArticleInfo, Column, LoadingState } from '../types';
+import { SourceArticleInfo, Column, LoadingState, User } from '../types';
 import { fetchArticleList } from '../api-facade';
 import CategoryColumn from './CategoryColumn';
 import styled from '../theme/index';
@@ -9,6 +9,7 @@ const ColumnsView = styled.div`
 `;
 
 type Props = {
+  userInfo: User;
   dispatchLoadingState?: (LoadingState) => void;
 };
 
@@ -29,7 +30,9 @@ class MainView extends React.Component<Props, State> {
   async componentDidMount() {
     try {
       // access API, and fetch Qiita article's info
-      const sourceArticleInfos = await fetchArticleList('/list');
+      const sourceArticleInfos = await fetchArticleList(
+        `/list?uid=${this.props.userInfo.id}`
+      );
       console.log(
         '[MainView] componentDidMount sourceArticleInfos',
         sourceArticleInfos
