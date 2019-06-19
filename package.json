@@ -23,15 +23,31 @@
     "styled-components": "^4.1.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.13",
     "@types/node": "^11.11.3",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "@types/react-router-dom": "^4.3.3",
     "@types/styled-components": "^4.1.12",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "@typescript-eslint/parser": "^1.10.2",
+    "babel-jest": "^24.8.0",
     "electron-load-devtool": "^1.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
     "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.5.0",
+    "jest": "^24.8.0",
     "prettier": "^1.16.4",
+    "react-test-renderer": "^16.8.6",
+    "ts-jest": "^24.0.2",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
@@ -41,6 +57,7 @@
     "start": "electron .",
     "build": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=production",
     "serve": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=development",
-    "watch": "webpack --watch --info-verbosity verbose"
+    "watch": "webpack --watch --info-verbosity verbose",
+    "test": "jest"
   }
 }
