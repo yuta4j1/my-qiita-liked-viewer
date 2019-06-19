@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import styled from '~/theme';
+import styled from '@/theme';
 import InputUidText from './InputUidText';
 import SubmitButton from './SubmitButton';
-import { fetchUser } from '~/api-facade';
+import { fetchUser } from '@/api-facade';
 import { User } from '../../types';
 
 const Content = styled.div`

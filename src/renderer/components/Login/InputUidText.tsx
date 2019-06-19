@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '~/theme';
+import styled from '@/theme';
 
 type Props = {
   text: string;
@@ -20,6 +20,7 @@ const InputUidText: React.FC<Props> = props => {
   return (
     <Input
       type="text"
+      className={'login-uid-input'}
       value={props.text}
       onChange={e => props.changeEvent(e.target.value)}
     />

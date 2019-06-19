@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import NavBar from '~/components/NavBar';
+import NavBar from '@/components/NavBar';
 import { ModalState } from '../../types';
 import { toggleModal } from '../Modal/action';
 import { AppState } from '../store';

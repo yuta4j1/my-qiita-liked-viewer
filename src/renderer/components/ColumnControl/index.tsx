@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ColumnCard from './ColumnCard';
 import { ColumnCardState } from '../../types';
-import styled from '~/theme/index';
+import styled from '@/theme/index';
 
 const Explain = styled.div`
   margin: 5% 5%;
@@ -33,9 +33,7 @@ const ColumnControl: React.FC<ColumnControlProps> = props => {
 
   return (
     <div>
-      <Explain>
-        // TODO 列の追加、ソートをここでやる
-      </Explain>
+      <Explain>// TODO 列の追加、ソートをここでやる</Explain>
       <CardTable>{generateCard()}</CardTable>
     </div>
   );

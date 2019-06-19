@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ColumnCardState } from '../../types';
-import styled from '~/theme';
+import styled from '@/theme';
 
 const Card = styled.div`
   padding: 5px;
