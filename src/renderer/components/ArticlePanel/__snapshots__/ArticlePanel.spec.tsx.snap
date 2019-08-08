@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticlePanel test <ArticlePanel /> snapshot 1`] = `
+Array [
+  <div
+    className="sc-bdVaJa jWHsEd"
+  >
+    <div
+      className="sc-htpNat CURwj"
+    >
+      <div>
+        <img
+          height={100}
+          src="https://qiita-image-store.s3.amazonaws.com/0/90607/profile-images/1473705145"
+          width={100}
+        />
+      </div>
+    </div>
+    <div
+      className="sc-htpNat CURwj"
+    >
+      <div
+        className="sc-bwzfXH gkBGFQ"
+      >
+        <p>
+          投稿日付：
+          2015/11/04
+        </p>
+      </div>
+      <div>
+        <a
+          className="sc-EHOje kWEsDe"
+          href="#"
+          onClick={[Function]}
+        >
+          Git で force pull する方法 ( $ git reset --hard origin/branch_name )
+        </a>
+      </div>
+      <div>
+        <div
+          className="sc-bxivhb hXdqup"
+        >
+          <div
+            className="sc-ifAKCX eHpeHy"
+          >
+            Git
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="sc-bdVaJa jWHsEd"
+  >
+    <div
+      className="sc-htpNat CURwj"
+    >
+      <div>
+        <img
+          height={100}
+          src="https://qiita-image-store.s3.amazonaws.com/0/89489/profile-images/1473704769"
+          width={100}
+        />
+      </div>
+    </div>
+    <div
+      className="sc-htpNat CURwj"
+    >
+      <div
+        className="sc-bwzfXH gkBGFQ"
+      >
+        <p>
+          投稿日付：
+          2016/06/27
+        </p>
+      </div>
+      <div>
+        <a
+          className="sc-EHOje kWEsDe"
+          href="#"
+          onClick={[Function]}
+        >
+          Goでパスワード入力を読み取る(Windows/Mac/Linux対応)
+        </a>
+      </div>
+      <div>
+        <div
+          className="sc-bxivhb hXdqup"
+        >
+          <div
+            className="sc-ifAKCX eHpeHy"
+          >
+            Go
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
