@@ -38,6 +38,7 @@
     "electron-load-devtool": "^1.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-loader": "^2.1.2",
@@ -58,6 +59,7 @@
     "build": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=production",
     "serve": "prettier --config ./.prettierrc --write ./src/**/*.{js,ts,tsx} | webpack --mode=development",
     "watch": "webpack --watch --info-verbosity verbose",
-    "test": "jest"
+    "test": "jest --debug",
+    "test:snapshot": "jest --updateSnapshot"
   }
 }

@@ -20,6 +20,7 @@ module.exports = {
         }
     },
     "moduleNameMapper": {
-        "@(.*)$": "<rootDir>/src/renderer/$1"
+        "^@/(.*)$": "<rootDir>/src/renderer/$1"
     },
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
 }
