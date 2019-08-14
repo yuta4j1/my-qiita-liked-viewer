@@ -5,8 +5,8 @@ import {
   BrowserRouter as Router,
   withRouter
 } from 'react-router-dom';
-import App from '~/components/App';
-import LoginWrapper from '~/components/Login/LoginWrapper';
+import App from '@/components/App';
+import LoginWrapper from '@/components/Login/LoginWrapper';
 
 const Routing = (
   <Router>
