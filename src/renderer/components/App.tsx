@@ -1,7 +1,8 @@
 import * as React from 'react';
 import NavBar from '@/containers/NavBar';
 import styled from '@/theme/index';
-import ModalContainer from '@/containers/Modal';
+import SideModal from '@/containers/SideModal';
+import ColumnSetting from '@/containers/ColumnSetting';
 import Loading from '@/containers/Loading';
 import MainView from '@/containers/MainView';
 import { store } from '@/containers/store';
@@ -13,7 +14,7 @@ const Content = styled.div`
   width: 100vw;
 `;
 const Item = styled.div`
-  margin: 0px 5px;
+  margin: 0px 5px 0px 93px;
 `;
 
 export default function App() {
@@ -25,7 +26,9 @@ export default function App() {
           <Item>
             <MainView />
           </Item>
-          <ModalContainer />
+          <SideModal>
+            <ColumnSetting />
+          </SideModal>
         </Content>
       </Loading>
     </Provider>

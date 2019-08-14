@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUserAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import styled from '../theme/index';
-import { ModalState, User } from '../types';
-import ColumnControl from './ColumnControl/index';
+import { faUserAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import styled from '@/theme/index';
+import { SideModalState, User } from '@/types';
 
-const NavBarWrapper = styled.div`
+const NavBarComponent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 88px;
   background-color: #55c500;
+  z-index: 2;
 `;
 const Ul = styled.div`
   display: flex;
@@ -25,38 +30,31 @@ const Li = styled.div`
 
 type NavbarProps = {
   signinUser: User;
-  toggleModal?: (data: ModalState) => void;
+  toggleModal?: (data: SideModalState) => void;
 };
 
 const NavBar: React.FC<NavbarProps> = props => {
-  const modalState: ModalState = {
-    isOpen: true,
-    modalBody: (
-      <ColumnControl
-        columnNames={['Java', 'JavaScript', 'Scala', 'Git', 'Other']}
-      />
-    ),
-    atClose: e =>
-      props.toggleModal({
-        isOpen: false,
-        modalBody: <div />,
-        atClose: () => console.log('')
-      })
+  const modalState: SideModalState = {
+    isShow: true
+  };
+
+  const addColumnButtonClick = () => {
+    props.toggleModal(modalState);
   };
   return (
-    <NavBarWrapper>
+    <NavBarComponent>
       <Ul>
         <Li>
-          <img src={props.signinUser.profileImageUrl} />
+          <img src={props.signinUser.profileImageUrl} height={44} width={44} />
         </Li>
         <Li>
           <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
         </Li>
-        <Li onClick={e => props.toggleModal(modalState)}>
+        <Li onClick={addColumnButtonClick}>
           <FontAwesomeIcon icon={faPlus} size={'2x'} />
         </Li>
       </Ul>
-    </NavBarWrapper>
+    </NavBarComponent>
   );
 };
 

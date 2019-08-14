@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { SourceArticleInfo, Column, LoadingState, User } from '../types';
-import { fetchArticleList } from '../api-facade';
+import {
+  SourceArticleInfo,
+  Column,
+  LoadingState,
+  User,
+  ColumnState
+} from '@/types';
+import { fetchArticleList } from '@/api-facade';
 import CategoryColumn from './CategoryColumn';
-import styled from '../theme/index';
+import styled from '@/theme';
 
 const ColumnsView = styled.div`
   display: flex;
@@ -10,6 +16,7 @@ const ColumnsView = styled.div`
 
 type Props = {
   userInfo: User;
+  columns: ColumnState;
   dispatchLoadingState?: (LoadingState) => void;
 };
 
@@ -60,7 +67,7 @@ class MainView extends React.Component<Props, State> {
     return {
       categoryName: categoryName,
       articles:
-        categoryName === 'Other'
+        categoryName === 'All'
           ? this.state.srcArticles.filter(
               src => !this.existsMatchTag(src.tagList, categoryName)
             )
@@ -71,16 +78,7 @@ class MainView extends React.Component<Props, State> {
   }
 
   renderCategoryColumn() {
-    // TODO 何らかの外部リソースから取得する
-    // それぞれ一つのカラムとなるカテゴリリスト
-    const specTags = [
-      'Java',
-      'JavaScript',
-      'Scala',
-      'Typescript',
-      'Git',
-      'Other'
-    ];
+    const specTags: ColumnState = this.props.columns;
     const props: Column[] = specTags
       .map(tag => this.generateCategoryColumnProps(tag))
       .filter(prop => prop.articles.length > 0);
@@ -93,9 +91,9 @@ class MainView extends React.Component<Props, State> {
       );
     }
     console.log('[MainView] renderCategoryColumn -> props', props);
-    return props.map((prop, key) => {
+    return props.map(prop => {
       const categoryColumnProp = Object.assign(prop, { columnNum: columnNum });
-      return <CategoryColumn key={key} {...categoryColumnProp} />;
+      return <CategoryColumn key={prop.categoryName} {...categoryColumnProp} />;
     });
   }
 
