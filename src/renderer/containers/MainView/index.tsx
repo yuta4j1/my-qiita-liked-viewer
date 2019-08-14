@@ -7,7 +7,8 @@ import { AppState } from '../store';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    userInfo: state.loginActionReducer
+    userInfo: state.loginActionReducer,
+    columns: state.columnStateReducer
   };
 };
 
