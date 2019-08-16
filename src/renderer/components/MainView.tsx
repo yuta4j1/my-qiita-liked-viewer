@@ -17,7 +17,7 @@ const ColumnsView = styled.div`
 type Props = {
   userInfo: User;
   columns: ColumnState;
-  dispatchLoadingState?: (LoadingState) => void;
+  dispatchLoadingState?: (loading: LoadingState) => void;
 };
 
 type State = {
@@ -79,10 +79,10 @@ class MainView extends React.Component<Props, State> {
 
   renderCategoryColumn() {
     const specTags: ColumnState = this.props.columns;
-    const props: Column[] = specTags
+    const columns: Column[] = specTags
       .map(tag => this.generateCategoryColumnProps(tag))
       .filter(prop => prop.articles.length > 0);
-    const columnNum = props.length;
+    const columnNum = columns.length;
     if (columnNum === 0) {
       return (
         <div>
@@ -90,9 +90,11 @@ class MainView extends React.Component<Props, State> {
         </div>
       );
     }
-    console.log('[MainView] renderCategoryColumn -> props', props);
-    return props.map(prop => {
-      const categoryColumnProp = Object.assign(prop, { columnNum: columnNum });
+    console.log('[MainView] renderCategoryColumn -> props', columns);
+    return columns.map(prop => {
+      const categoryColumnProp = Object.assign(prop, {
+        columnNum: columnNum
+      });
       return <CategoryColumn key={prop.categoryName} {...categoryColumnProp} />;
     });
   }

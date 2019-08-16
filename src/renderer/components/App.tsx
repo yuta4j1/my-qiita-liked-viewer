@@ -5,7 +5,7 @@ import SideModal from '@/containers/SideModal';
 import ColumnSetting from '@/containers/ColumnSetting';
 import Loading from '@/containers/Loading';
 import MainView from '@/containers/MainView';
-import { store } from '@/containers/store';
+import { store } from '../containers/store';
 import { Provider } from 'react-redux';
 
 const Content = styled.div`
