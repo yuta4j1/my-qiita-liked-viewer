@@ -34,8 +34,6 @@ export type SideModalState = {
 
 export type ColumnState = string[];
 
-export type ColumnPosition = number;
-
 export type LoadingState = {
   isActive: boolean;
 };
