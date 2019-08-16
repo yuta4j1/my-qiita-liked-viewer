@@ -1,11 +1,17 @@
-import { connect } from 'react-redux';
+import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { AppState } from '../store';
-import NowLoading from '../../components/NowLoading';
+import { LoadingState } from '@/types';
+import NowLoading from '@/components/NowLoading';
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    currentState: state.loadingStateReducer
-  };
+const LoadingContainer: React.FC<{ children: any }> = ({ children }) => {
+  const currentState = useSelector(
+    (state: AppState): LoadingState => state.loadingStateReducer
+  );
+
+  const childProps = { currentState };
+
+  return <NowLoading {...childProps}>{children}</NowLoading>;
 };
 
-export default connect(mapStateToProps)(NowLoading);
+export default LoadingContainer;

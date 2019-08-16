@@ -1,23 +1,29 @@
+import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { SideModalState } from '@/types';
 import { AppState } from '../store';
-import { SideModalState } from '../../types';
 import { toggleModal } from './action';
 import SideModalFrame from '@/components/Modal/SideModalFrame';
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    isShow: state.sideModalStateReducer.isShow
-  };
+const SideModalContainer: React.FC<{ children: any }> = ({ children }) => {
+  const dispatch = useDispatch<Dispatch>();
+
+  const dispatchModal = React.useCallback(
+    (data: SideModalState) => {
+      dispatch(toggleModal(data));
+    },
+    [dispatch]
+  );
+
+  const selector = (data: AppState): SideModalState =>
+    data.sideModalStateReducer;
+
+  const state = useSelector<AppState, SideModalState>(selector);
+
+  const props = { isShow: state.isShow, toggleModal: dispatchModal };
+
+  return <SideModalFrame {...props}>{children}</SideModalFrame>;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: SideModalState) => {
-  return {
-    toggleModal: (ownProps: SideModalState) => dispatch(toggleModal(ownProps))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SideModalFrame);
+export default SideModalContainer;

@@ -1,22 +1,26 @@
+import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import NavBar from '@/components/NavBar';
-import { SideModalState } from '../../types';
+import { SideModalState } from '@/types';
 import { toggleModal } from '../SideModal/action';
 import { AppState } from '../store';
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    signinUser: state.loginActionReducer
-  };
-};
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: SideModalState) => {
-  return {
-    toggleModal: ownProps => dispatch(toggleModal(ownProps))
-  };
+const NavBarContainer: React.FC<{}> = () => {
+  const dispatch = useDispatch<Dispatch>();
+
+  const dispatchModal = React.useCallback(
+    (state: SideModalState) => {
+      dispatch(toggleModal(state));
+    },
+    [dispatch]
+  );
+
+  const signinUser = useSelector((state: AppState) => state.loginActionReducer);
+
+  const props = { signinUser, toggleModal: dispatchModal };
+
+  return <NavBar {...props} />;
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavBar);
+export default NavBarContainer;

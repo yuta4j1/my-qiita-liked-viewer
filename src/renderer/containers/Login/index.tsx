@@ -1,16 +1,20 @@
+import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { User } from '../../types';
+import { useDispatch } from 'react-redux';
+import { User } from '@/types';
 import Login from '@/components/Login';
 import { signinAction } from './action';
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: User) => {
-  return {
-    storeUserInfo: ownProps => dispatch(signinAction(ownProps))
-  };
+const LoginContainer: React.FC<{}> = () => {
+  const dispatch = useDispatch<Dispatch>();
+  const storeUserInfo = React.useCallback(
+    (user: User) => {
+      dispatch(signinAction(user));
+    },
+    [dispatch]
+  );
+  const props = { storeUserInfo };
+  return <Login {...props} />;
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default LoginContainer;
