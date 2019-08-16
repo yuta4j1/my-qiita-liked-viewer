@@ -23,7 +23,7 @@ const Ul = styled.div`
 `;
 const Li = styled.div`
   list-style: none;
-  margin: 20px 10px;
+  margin: 10px;
   padding: 10px;
   cursor: pointer;
 `;
@@ -32,6 +32,13 @@ type NavbarProps = {
   signinUser: User;
   toggleModal?: (data: SideModalState) => void;
 };
+
+const UserIcon = styled.img`
+  border-radius: 2px;
+  height: 44px;
+  width: 44px;
+  background: url(${props => props.src});
+`;
 
 const NavBar: React.FC<NavbarProps> = props => {
   const modalState: SideModalState = {
@@ -45,7 +52,7 @@ const NavBar: React.FC<NavbarProps> = props => {
     <NavBarComponent>
       <Ul>
         <Li>
-          <img src={props.signinUser.profileImageUrl} height={44} width={44} />
+          <UserIcon src={props.signinUser.profileImageUrl} />
         </Li>
         <Li>
           <FontAwesomeIcon icon={faUserAlt} size={'2x'} />
