@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { openExternalBrowser } from '@/service';
-import styled from '@/theme/index';
-import { ArticleInfo } from '@/types';
+import styled from '@/theme';
+import { ArticleInfo, ColumnState } from '@/types';
 
-type ArticleProps = ArticleInfo;
-type ArticleState = ArticleInfo;
+type ArticleProps = ArticleInfo & {
+  columns: ColumnState;
+  setColumns: (data: ColumnState) => void;
+};
 
 const Panel = styled.div`
   display: flex;
@@ -37,6 +39,11 @@ const ATag = styled.div`
   background-color: #f5f5f5;
   font-family: 'Assistant', sans-serif;
   font-size: 1em;
+  cursor: pointer;
+  transition: color .3s
+  &:hover {
+    color: #2196f3;
+  }
 `;
 
 const Link = styled.a`
@@ -53,11 +60,19 @@ const UserImage = styled.img`
 `;
 
 const ArticlePanel: React.FC<ArticleProps> = props => {
-  const [state, setState] = useState({ ...props });
+  const [state] = useState({ ...props });
+
+  const tagClickEvent = (tag: string) => {
+    props.setColumns([...props.columns, tag]);
+  };
 
   const createTagBadges = () =>
     state.tagList.map((tag, key) => {
-      return <ATag key={key}>{tag}</ATag>;
+      return (
+        <ATag key={key} onClick={e => tagClickEvent(tag)}>
+          {tag}
+        </ATag>
+      );
     });
 
   const openArticle = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
