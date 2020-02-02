@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { Column } from '@/types';
-import { Scrollbars } from 'react-custom-scrollbars';
-import styled from '@/theme/index';
-import ArticlePanel from '@/containers/ArticlePanel';
+import React, { FC, useState } from 'react'
+import { Column } from '@/types'
+import { Scrollbars } from 'react-custom-scrollbars'
+import styled from '@/theme/index'
+import ArticlePanel from '@/containers/ArticlePanel'
 
 type ColumnProps = Column & {
-  columnNum: number;
-};
+  columnNum: number
+}
 
 const ColumnHeader = styled.div`
   display: flex;
@@ -15,24 +14,25 @@ const ColumnHeader = styled.div`
   align-items: center;
   height: 50px;
   font-size: 20px;
-`;
+`
+
 const ColumnBody = styled.div`
   min-width: 150px;
-  height: 1000px;
-`;
+  height: 100%;
+`
 
-const CategoryColumn: React.FC<ColumnProps> = props => {
-  const [state] = useState({ ...props });
+const CategoryColumn: FC<ColumnProps> = props => {
+  const [state] = useState({ ...props })
 
   const PanelColumn = styled.div`
     min-width: 150px;
     height: 100vh;
-  `;
+  `
 
   const createArticlePanel = () =>
     state.articles.map((article, key) => {
-      return <ArticlePanel key={key} {...article} />;
-    });
+      return <ArticlePanel key={key} {...article} />
+    })
 
   return (
     <PanelColumn>
@@ -41,7 +41,7 @@ const CategoryColumn: React.FC<ColumnProps> = props => {
         <ColumnBody>{createArticlePanel()}</ColumnBody>
       </Scrollbars>
     </PanelColumn>
-  );
-};
+  )
+}
 
-export default CategoryColumn;
+export default CategoryColumn

@@ -7,7 +7,7 @@ const createWindow = () => {
     height: 850
   });
 
-  win.loadFile('index.html');
+  win.loadFile('dist/index.html');
   loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS);
   loadDevtool(loadDevtool.REDUX_DEVTOOLS);
 
