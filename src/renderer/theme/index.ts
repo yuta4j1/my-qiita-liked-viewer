@@ -1,4 +1,4 @@
-import * as styledComponents from 'styled-components';
+import * as styledComponents from 'styled-components'
 
 const {
   default: styled,
@@ -7,15 +7,15 @@ const {
   ThemeProvider
 } = styledComponents as styledComponents.ThemedStyledComponentsModule<
   IThemeInterface
->;
+>
 
 export interface IThemeInterface {
-  primaryColor: string;
+  primaryColor: string
 }
 
 export const theme = {
   primaryColor: '#e9e9eb'
-};
+}
 
-export default styled;
-export { css, keyframes, ThemeProvider };
+export default styled
+export { css, keyframes, ThemeProvider }

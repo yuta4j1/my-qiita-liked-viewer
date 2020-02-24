@@ -1,11 +1,11 @@
-import { TOGGLE_MODAL } from './actionType';
-import { ModalState } from '../../types';
+import { TOGGLE_MODAL } from './actionType'
+import { ModalState } from '../../types'
 
 const initialState: ModalState = {
   isOpen: false,
   modalBody: undefined,
   atClose: () => console.log('None')
-};
+}
 
 const modalStateReducer = (
   modalState = initialState,
@@ -13,10 +13,10 @@ const modalStateReducer = (
 ): ModalState => {
   switch (action.type) {
     case TOGGLE_MODAL:
-      return Object.assign({}, action.payload);
+      return Object.assign({}, action.payload)
     default:
-      return modalState;
+      return modalState
   }
-};
+}
 
-export default modalStateReducer;
+export default modalStateReducer

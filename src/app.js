@@ -1,21 +1,22 @@
-const { app, BrowserWindow } = require('electron');
-const loadDevtool = require('electron-load-devtool');
+const { app, BrowserWindow } = require('electron')
+const loadDevtool = require('electron-load-devtool')
 
 const createWindow = () => {
   let win = new BrowserWindow({
-    width: 1200,
-    height: 850
-  });
+    width: 1280,
+    height: 800,
+    useContentSize: true
+  })
 
-  win.loadFile('dist/index.html');
-  loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS);
-  loadDevtool(loadDevtool.REDUX_DEVTOOLS);
+  win.loadFile('dist/index.html')
+  loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS)
+  loadDevtool(loadDevtool.REDUX_DEVTOOLS)
 
-  win.webContents.openDevTools();
+  win.webContents.openDevTools()
 
   win.on('closed', () => {
-    win = null;
-  });
-};
+    win = null
+  })
+}
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)

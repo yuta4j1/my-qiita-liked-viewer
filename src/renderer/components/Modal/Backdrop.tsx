@@ -1,10 +1,10 @@
-import * as React from 'react';
-import styled from '@/theme';
+import * as React from 'react'
+import styled from '@/theme'
 
 type Props = {
-  isShow: boolean;
-  clickEvent: (any) => void;
-};
+  isShow: boolean
+  clickEvent: (any) => void
+}
 
 const BackdropComponentBase = styled.div`
   position: fixed;
@@ -15,7 +15,7 @@ const BackdropComponentBase = styled.div`
   background-color: #424242;
   opacity: 0.7;
   z-index: 10;
-`;
+`
 
 const Backdrop: React.FC<Props> = props => {
   const BackdropComponent = props.isShow
@@ -24,8 +24,8 @@ const Backdrop: React.FC<Props> = props => {
       `
     : styled(BackdropComponentBase)`
         visibility: hidden;
-      `;
-  return <BackdropComponent onClick={props.clickEvent} />;
-};
+      `
+  return <BackdropComponent onClick={props.clickEvent} />
+}
 
-export default Backdrop;
+export default Backdrop

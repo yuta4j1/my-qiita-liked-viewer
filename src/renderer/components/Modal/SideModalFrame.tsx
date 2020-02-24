@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Modal from './Modal';
-import Backdrop from './Backdrop';
-import { SideModalState } from '../../types';
+import * as React from 'react'
+import Modal from './Modal'
+import Backdrop from './Backdrop'
+import { SideModalState } from '../../types'
 
 type Props = {
-  isShow: boolean;
-  toggleModal?: (data: SideModalState) => void;
-};
+  isShow: boolean
+  toggleModal?: (data: SideModalState) => void
+}
 
 const SideModalFrame: React.FC<Props> = props => {
   const state: SideModalState = {
     isShow: false
-  };
+  }
 
   return (
     <>
@@ -21,7 +21,7 @@ const SideModalFrame: React.FC<Props> = props => {
       />
       <Modal isShow={props.isShow}>{props.children}</Modal>
     </>
-  );
-};
+  )
+}
 
-export default SideModalFrame;
+export default SideModalFrame

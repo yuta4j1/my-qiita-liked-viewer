@@ -1,1 +1,1 @@
-export const SETTING_COLUMN = 'SETTING_COLUMN';
+export const SETTING_COLUMN = 'SETTING_COLUMN'

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import styled, { keyframes } from '@/theme';
+import * as React from 'react'
+import styled, { keyframes } from '@/theme'
 
 type ModalProps = {
-  isShow: boolean;
-};
+  isShow: boolean
+}
 
 const fadeIn = keyframes`
   from {
@@ -14,7 +14,7 @@ const fadeIn = keyframes`
       left: 0%;
       opacity: 1;
   }
-`;
+`
 
 const fadeOut = keyframes`
   from {
@@ -25,7 +25,7 @@ const fadeOut = keyframes`
       left: -30%;
       opacity: 0;
   }
-`;
+`
 
 const ModalComponentBase = styled.div`
   position: fixed;
@@ -35,7 +35,7 @@ const ModalComponentBase = styled.div`
   width: 240px;
   background-color: #e0e0e0;
   z-index: 11;
-`;
+`
 
 const Modal: React.FC<ModalProps> = props => {
   const ModalComponent = props.isShow
@@ -48,8 +48,8 @@ const Modal: React.FC<ModalProps> = props => {
         animation: ${fadeOut} 0.3s linear;
         visibility: hidden;
         left: -30%;
-      `;
-  return <ModalComponent>{props.children}</ModalComponent>;
-};
+      `
+  return <ModalComponent>{props.children}</ModalComponent>
+}
 
-export default Modal;
+export default Modal

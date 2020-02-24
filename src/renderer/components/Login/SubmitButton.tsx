@@ -1,9 +1,9 @@
-import * as React from 'react';
-import styled from '@/theme';
+import * as React from 'react'
+import styled from '@/theme'
 
 type Props = {
-  clickEvent: () => void;
-};
+  clickEvent: () => void
+}
 
 const Button = styled.button`
   padding: 12px;
@@ -19,10 +19,10 @@ const Button = styled.button`
   &:hover {
     background-color: #dcedc8;
   }
-`;
+`
 
 const SubmitButton: React.FC<Props> = props => {
-  return <Button onClick={e => props.clickEvent()}>Sign in</Button>;
-};
+  return <Button onClick={e => props.clickEvent()}>Sign in</Button>
+}
 
-export default SubmitButton;
+export default SubmitButton

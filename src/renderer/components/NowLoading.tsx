@@ -1,12 +1,11 @@
-import * as React from 'react';
-import LoadingOverlay from 'react-loading-overlay';
-import Spinner from './Spinner';
-import { LoadingState } from '../types';
+import * as React from 'react'
+import LoadingOverlay from 'react-loading-overlay'
+import { LoadingState } from '../types'
 
 type LoadingProps = {
-  currentState: LoadingState;
-  children: JSX.Element;
-};
+  currentState: LoadingState
+  children: JSX.Element
+}
 
 const NowLoading: React.FC<LoadingProps> = (props: LoadingProps) => {
   return (
@@ -17,7 +16,7 @@ const NowLoading: React.FC<LoadingProps> = (props: LoadingProps) => {
     >
       {props.children}
     </LoadingOverlay>
-  );
-};
+  )
+}
 
-export default NowLoading;
+export default NowLoading

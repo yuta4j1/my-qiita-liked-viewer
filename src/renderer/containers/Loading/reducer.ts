@@ -1,9 +1,9 @@
-import { LoadingState, ReduxAction } from '../../types';
-import { TOGGLE_LOADING } from './actionType';
+import { LoadingState, ReduxAction } from '../../types'
+import { TOGGLE_LOADING } from './actionType'
 
 const initialState: LoadingState = {
   isActive: true
-};
+}
 
 const loadingStateReducer = (
   state = initialState,
@@ -11,10 +11,10 @@ const loadingStateReducer = (
 ): LoadingState => {
   switch (action.type) {
     case TOGGLE_LOADING:
-      return action.payload;
+      return action.payload
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default loadingStateReducer;
+export default loadingStateReducer

@@ -1,9 +1,9 @@
-import { TOGGLE_MODAL } from './actionType';
-import { SideModalState } from '../../types';
+import { TOGGLE_MODAL } from './actionType'
+import { SideModalState } from '../../types'
 
 const initialState: SideModalState = {
   isShow: false
-};
+}
 
 const sideModalStateReducer = (
   modalState = initialState,
@@ -11,10 +11,10 @@ const sideModalStateReducer = (
 ): SideModalState => {
   switch (action.type) {
     case TOGGLE_MODAL:
-      return { ...action.payload };
+      return { ...action.payload }
     default:
-      return modalState;
+      return modalState
   }
-};
+}
 
-export default sideModalStateReducer;
+export default sideModalStateReducer

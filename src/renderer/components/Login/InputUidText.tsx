@@ -1,10 +1,10 @@
-import * as React from 'react';
-import styled from '@/theme';
+import * as React from 'react'
+import styled from '@/theme'
 
 type Props = {
-  text: string;
-  changeEvent: (string) => void;
-};
+  text: string
+  changeEvent: (string) => void
+}
 
 const Input = styled.input`
   padding: 6px;
@@ -14,7 +14,7 @@ const Input = styled.input`
   border-style: none;
   font-family: 'Assistant', sans-serif;
   font-size: 20px;
-`;
+`
 
 const InputUidText: React.FC<Props> = props => {
   return (
@@ -24,7 +24,7 @@ const InputUidText: React.FC<Props> = props => {
       value={props.text}
       onChange={e => props.changeEvent(e.target.value)}
     />
-  );
-};
+  )
+}
 
-export default InputUidText;
+export default InputUidText

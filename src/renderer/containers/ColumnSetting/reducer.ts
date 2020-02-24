@@ -1,7 +1,7 @@
-import { SETTING_COLUMN } from './actionType';
-import { ColumnState } from '@/types';
+import { SETTING_COLUMN } from './actionType'
+import { ColumnState } from '@/types'
 
-const initialState: ColumnState = ['All'];
+const initialState: ColumnState = ['All']
 
 const columnStateReducer = (
   columnState = initialState,
@@ -9,10 +9,10 @@ const columnStateReducer = (
 ): ColumnState => {
   switch (action.type) {
     case SETTING_COLUMN:
-      return action.payload;
+      return action.payload
     default:
-      return columnState;
+      return columnState
   }
-};
+}
 
-export default columnStateReducer;
+export default columnStateReducer

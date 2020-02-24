@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
-import routing from './Routing';
+import { render } from 'react-dom'
+import routing from './Routing'
 
-render(routing, document.getElementById('app'));
+render(routing, document.getElementById('app'))

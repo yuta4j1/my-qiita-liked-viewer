@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Modal from 'react-modal';
-import { ModalState } from '../types';
-import Containts from './ModalContaints';
+import * as React from 'react'
+import Modal from 'react-modal'
+import { ModalState } from '../types'
+import Containts from './ModalContaints'
 
 const customStyles = {
   content: {
@@ -12,16 +12,16 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)'
   }
-};
+}
 
 type ModalFrameProps = {
-  currentState: ModalState;
-  closeModal?: (state: ModalState) => void;
-};
+  currentState: ModalState
+  closeModal?: (state: ModalState) => void
+}
 
 class ModalFrame extends React.Component<ModalFrameProps> {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   onClose() {
@@ -29,7 +29,7 @@ class ModalFrame extends React.Component<ModalFrameProps> {
       isOpen: false,
       modalBody: <div />,
       atClose: () => console.log('')
-    });
+    })
   }
 
   render() {
@@ -46,10 +46,10 @@ class ModalFrame extends React.Component<ModalFrameProps> {
           closeEvent={() => this.onClose()}
         />
       </Modal>
-    );
+    )
   }
 }
 
-Modal.setAppElement('#app');
+Modal.setAppElement('#app')
 
-export default ModalFrame;
+export default ModalFrame
