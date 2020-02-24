@@ -37,7 +37,7 @@ const CategoryColumn: FC<ColumnProps> = props => {
   return (
     <PanelColumn>
       <ColumnHeader>{state.categoryName}</ColumnHeader>
-      <Scrollbars style={{ width: 500, height: 900 }}>
+      <Scrollbars style={{ width: 500, height: window.innerHeight - 50 }}>
         <ColumnBody>{createArticlePanel()}</ColumnBody>
       </Scrollbars>
     </PanelColumn>
