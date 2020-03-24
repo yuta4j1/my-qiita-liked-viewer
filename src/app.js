@@ -5,7 +5,10 @@ const createWindow = () => {
   let win = new BrowserWindow({
     width: 1280,
     height: 800,
-    useContentSize: true
+    useContentSize: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
 
   win.loadFile('dist/index.html')
